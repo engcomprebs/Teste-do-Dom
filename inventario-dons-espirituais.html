@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inventário de Dons Espirituais</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root{--bg:#F1F0D8;--surface:#FAF9E8;--ink:#1E2419;--muted:#5E6652;--line:#CBD0B4;--accent:#2F4A2A;--accent-ink:#F1F0D8;--mark:#DDE56A;--track:#DFE2C5;--circ:rgba(111,140,96,.32);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1D1C1A;--surface:#282724;--ink:#F1F0E4;--muted:#A5A596;--line:#3B3A35;--accent:#DDE56A;--accent-ink:#1D1C1A;--mark:#DDE56A;--track:#3A3934;--circ:rgba(110,135,70,.30);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1D1C1A;--surface:#282724;--ink:#F1F0E4;--muted:#A5A596;--line:#3B3A35;--accent:#DDE56A;--accent-ink:#1D1C1A;--mark:#DDE56A;--track:#3A3934;--circ:rgba(110,135,70,.30);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;top:-110px;right:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 40% 40%,var(--circ),transparent 70%);z-index:-1;pointer-events:none}
+main{max-width:640px;margin:0 auto;padding:24px 20px 48px}
+h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;font-weight:400;line-height:1;margin:0;letter-spacing:.01em;text-transform:uppercase}
+h1{font-size:3.1rem}h2{font-size:2.2rem}h3{font-size:1.5rem}
+em{font-family:"Instrument Serif",Georgia,"Times New Roman",serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
+h1 em{font-size:1.15em}
+p{margin:0 0 .9em}
+.muted{color:var(--muted)}
+mark{background:var(--mark);color:#1D1C1A;padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.brand{display:flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.05em;margin-bottom:30px;text-transform:uppercase}
+.brand b{font-weight:700}
+.btn{font:inherit;font-weight:600;border:0;border-radius:999px;padding:15px 22px;background:var(--accent);color:var(--accent-ink);cursor:pointer;width:100%}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn+.btn{margin-top:10px}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.intro ul{padding-left:1.2em;margin:0 0 1.2em}.intro li{margin-bottom:.5em}
+.scale{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;margin:0 0 1.4em;padding:0;list-style:none}
+.bar{height:6px;background:var(--track);border-radius:3px;overflow:hidden;margin:6px 0 4px}
+.bar>i{display:block;height:100%;background:var(--accent);transition:width .25s}
+.qtop{display:flex;justify-content:space-between;font-size:.88rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.qtext{font-size:1.4rem;font-weight:500;line-height:1.35;margin:28px 0 10px;min-height:7.5em}
+.q-ask{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:1.2rem;color:var(--muted);margin-bottom:14px}
+.opt{display:flex;justify-content:space-between;align-items:center;width:100%;font:inherit;text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:15px 18px;margin-bottom:10px;cursor:pointer}
+.opt b{color:var(--muted);font-weight:500}
+.opt.sel{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}.opt.sel b{color:inherit}
+.back{background:none;border:0;font:inherit;color:var(--muted);padding:10px 0;cursor:pointer}
+.hero{border-left:4px solid var(--accent);padding:6px 0 6px 16px;margin:18px 0 8px}
+.hero .pts{color:var(--muted);font-size:.95rem;font-family:"DM Sans",sans-serif;letter-spacing:0;text-transform:none}
+.sec{margin:22px 0 6px;color:var(--muted);font-size:.95rem}
+.gift{border-bottom:1px solid var(--line)}
+.gift summary{list-style:none;cursor:pointer;padding:12px 0}
+.gift summary::-webkit-details-marker{display:none}
+.gift .row{display:flex;justify-content:space-between;gap:10px;font-weight:500}
+.gift.hi .row span:first-child{font-weight:700}
+.track{position:relative;height:10px;background:var(--track);border-radius:5px;margin-top:8px}
+.track i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--muted)}
+.gift.hi .track i{background:var(--accent)}
+.track u{position:absolute;left:79.17%;top:-3px;bottom:-3px;width:2px;background:var(--ink)}
+.gift .more{padding:0 0 14px;color:var(--muted);font-size:.95rem}
+.note{font-size:.85rem;color:var(--muted);margin-top:28px}
+</style></head><body><main id="app"></main>
+<script>
+const Q=["Gosto de organizar idéias, pessoas, coisas e o tempo, tendo em vista um serviço mais efetivo e produtivo para o Senhor.", "Tenho alegria em trabalhar com as pessoas ignoradas ou desconhecidas da maioria.", "Adapto-me facilmente a uma situação ou ambiente diferente.", "Tenho facilidade em selecionar e relacionar entre si fatos importantes das Escrituras.", "Tenho prazer em ajudar os líderes de maior responsabilidade, aliviando-os de tarefas menores de seu trabalho.", "Eu percebo sem dificuldade a diferença entre o que é certo e o que é errado.", "Gosto de levar outras pessoas a uma decisão relacionada com a salvação.", "Tenho facilidade em encorajar e animar as pessoas indecisas e cheias de problemas.", "Quando percebo a vontade de Deus, posso ir em frente, apesar da oposição ou falta de apoio.", "Sinto-me realizado com a oportunidade de ajudar as pessoas a conhecer os detalhes sobre um assunto complicado.", "Gostaria de me envolver em atividades que promovam o crescimento de um grupo de crentes levando-os ao amadurecimento na vida cristã.", "Sinto alegria em comunicar a vontade de Deus e faço de maneira contagiante, persuasiva e clara, tendo a certeza de que falo da parte de Deus.", "Sonho em ter mais dinheiro para poder repartir com as pessoas necessitadas.", "As minhas sugestões às pessoas para ajudá-las em suas decisões geralmente dão certo.", "Tenho facilidade em fazer planos de ação para que, com outras pessoas, possamos atingir um objetivo.", "Gosto de visitar hospitais ou lares de pessoas necessitadas e me sinto abençoado com isso.", "Eu fico empolgado com o sucesso do trabalho missionário em outros Estados e no estrangeiro.", "Gosto de analisar bem todos os fatos até entendê-los.", "Fico à vontade quando posso ser útil em fazer certas coisas auxiliares para ajudar quem é líder, como arrumar cadeiras, transportar objetos, manter a ordem das coisas, etc.", "Posso constatar a falsidade antes que ela se torne evidente às outras pessoas.", "Tenho facilidade em iniciar uma conversa com uma pessoa estranha e levá-la ao conhecimento do Evangelho.", "Tenho facilidade em entender os problemas dos outros e apontar-lhes os rumos de possíveis soluções.", "Tenho convicção da presença e atuação divina em minha vida diariamente.", "Procuro explicar as questões complicadas da Bíblia de modo que outros me entendam sem dificuldade.", "Tenho prazer em ser útil na recuperação espiritual de crentes que se afastaram do Senhor e da igreja.", "Tenho alegria se sou solicitado a pregar (nos lares, no templo, ao ar livre, etc.).", "Quando ajudo uma pessoa necessitada, deixo de lado qualquer pensamento sobre vantagens materiais ou espirituais.", "De várias alternativas, escolho a opção que normalmente funciona.", "Quando alguma organização a que pertenço tem algum problema a enfrentar, intimamente procuro pensar nas possíveis soluções.", "Sinto-me realizado quando posso fazer algo por uma pessoa doente ou em necessidade.", "Tenho prazer em cooperar nos trabalhos pioneiros de minha igreja, como iniciar um novo ponto de pregação ou congregação, etc.", "Gosto de analisar e entender bem todas as coisas, antes de aceitá-las.", "Em ocasiões de emergência tenho prazer em ajudar os líderes de maior responsabilidade para que as coisas se normalizem.", "Quando alguém está conversando comigo, geralmente percebo se não está dizendo a verdade.", "Gosto de cooperar com os trabalhos de evangelização de minha igreja, como séries de conferências, pregações ao ar livre, nas congregações, etc.", "Aceito sem dificuldade as impertinências e os erros das pessoas, crendo que uma conversa pessoal com elas é o melhor remédio.", "Mesmo em tempos difíceis, tenho convicção na provisão e ajuda contínua de Deus.", "Quando vou explicar uma coisa a uma pessoa, gosto de me colocar no lugar dela para sentir suas dificuldades em aprender.", "Tenho compaixão pelos crentes que vacilam na fé, e se pudesse, procuraria tomar providências para a sua recuperação.", "Acredito que a melhor maneira de levar o povo de Deus a uma vida mais dedicada é através da admoestação pela pregação pública da Palavra de Deus.", "Quando há alguma necessidade financeira ou material na igreja ou na vida de alguém, logo penso em contribuir com minhas posses para ajudar.", "Sempre que uma pessoa está com problemas, a solução me vem de Deus através de um versículo da Bíblia.", "Tenho facilidade em descobrir as falhas de uma organização e de elaborar um plano de ação pra a devida correção.", "Sinto compaixão quando vejo alguma pessoa doente ou com problemas.", "Se Deus me chamasse, gostaria de pregar o evangelho num local distante.", "Sinto-me incomodado enquanto não entendo completamente um texto bíblico, indo atrás de informações para seu esclarecimento.", "Tenho prazer em servir de introdutor, em auxiliar a manter a ordem ou realizar qualquer trabalho auxiliar para que a obra de Deus se realize.", "Sinto quando as coisas não vão dar certo.", "A ênfase de minha mensagem ou conversas tem sido a salvação em Cristo.", "Quando uma pessoa está em pecado, a ênfase de minha preocupação é ajudá-la, ainda que perceba que outros a critiquem.", "Vários problemas sem solução já foram resolvidos porque eu cri que Deus os resolveria.", "Sinto necessidade de entender bem as coisas para poder explicá-las aos outros.", "Tenho prazer em alimentar os crentes com a Palavra de Deus.", "Quando há algum problema na igreja, acredito que somente pela pregação sobre o assunto, ele pode ser resolvido.", "Tenho a tendência de contribuir para a obra de Deus com um percentual maior do que o exigido.", "Quando leio um texto bíblico geralmente penso em suas lições práticas.", "Consigo imaginar um evento que precisa ser realizado, prevendo os problemas a serem enfrentados e buscando formas de resolvê-los.", "Identifico-me com as pessoas que estão sofrendo, e desejo ajudá-las no processo de restauração.", "Gosto de iniciar trabalhos novos na área de evangelização.", "Interesso-me em saber como as coisas funcionam.", "Tenho prazer em providenciar certos detalhes para que o trabalho da igreja alcance seus objetivos, como anotar os nomes dos visitantes, controlar o aparelho de som / vídeo num culto, arrumar cadeiras, secretariar uma reunião, etc.", "Tenho facilidade em perceber se uma atitude é certa ou errada e geralmente isso se confirma.", "Busco oportunidades no relacionamento com descrentes para evangelizá-los.", "Para mim o potencial das pessoas tem mais valor do que seus atos.", "Já fui surpreendido com respostas imediatas às minhas orações.", "Quando assisto uma aula dada por alguém que não sabe ensinar direito, fico pensando numa maneira diferente em que ela teria melhor rendimento no ensino.", "Sinto prazer em orientar os crentes como um pastor às suas ovelhas.", "Sinto-me responsável por confrontar as pessoas com a verdade.", "Administro as minhas finanças e bens para que possa contribuir mais para a obra de Deus.", "Penso em soluções de problemas que normalmente as pessoas não pensariam.", "Tenho interesse em entender como as organizações funcionam.", "Tenho compaixão pelas pessoas consideradas inúteis, sem esperança ou que estão sofrendo.", "Havendo oportunidade, estou disposto a me oferecer para participar ativamente no começo de uma nova igreja.", "Gosto de entender bem as questões complicadas da Bíblia.", "Ainda que a pregação da Palavra seja importante, creio que o meu papel é ajudar nos detalhes de bastidores ou na retaguarda.", "Posso discernir com certa precisão o caráter de uma pessoa baseado apenas nas primeiras impressões que tenho dela.", "Preocupo-me com a salvação de meus parentes, amigos, vizinhos e colegas.", "Gosto de encorajar e fortalecer as pessoas que estão abatidas e tristes.", "Em situações onde o sucesso não pode ser garantido somente pelo esforço humano, eu confio na providência divina em vez de desesperar.", "Se tiver oportunidade, gostaria de ensinar a Bíblia de modo que os ouvintes tenham o desejo de estudá-la mais.", "Se pudesse, gostaria de investir tempo nutrindo e cuidando dos crentes que estão em processo de crescimento espiritual.", "Quando percebo uma situação de pecado, sinto-me compelido a denunciá-lo e desafiar as pessoas envolvidas, ao arrependimento.", "Acredito que o Senhor tem me dado recursos em abundância para que eu possa contribuir mais para a sua obra.", "Tenho facilidade em encontrar soluções simples e práticas no meio de discussões ou de situações de conflito ou confusão."];
+const O=[["Muito",4],["Às vezes",2],["Raramente",1],["Nunca",0]];
+const G=[
+["Administração / Liderança","Coordena atividades, planeja as etapas de um plano de ação e ajuda a detectar problemas numa organização e a buscar soluções. Atua na liderança de diversas áreas da igreja.","Tt 1.5; 1 Tm 5.17"],
+["Misericórdia","Interessa-se pelo sofrimento e pela carência dos outros, tem compaixão, visita enfermos e fracos na fé e ajuda a carregar fardos, mesmo em situações que normalmente causariam repulsa.","Gl 6.10"],
+["Missionário","Funda novos trabalhos e frentes missionárias, tem disposição para ir a outra cidade, estado ou país alcançar quem ainda não foi salvo, e evangeliza.","Paulo, At 13.1-4"],
+["Conhecimento","Busca conhecimento e esclarecimento sobre a Palavra de Deus, tem espírito de investigação e facilidade para reconhecer e sistematizar os grandes fatos das Escrituras. Costuma ser auxiliar do ensino e da profecia.","Dn 9.2"],
+["Serviço / Diaconia","Descobre necessidades a suprir na igreja e se dispõe a fazer o que não está ligado diretamente à Palavra: som e vídeo, portaria, recepção, preparo do ambiente e retaguarda de eventos.","At 6.1-3"],
+["Discernimento de Espíritos","Detecta com facilidade a falsidade e a verdade, distingue sintomas de causas, é muito intuitivo e alerta a igreja quando uma decisão oferece risco. Em geral auxilia outros dons.","Paulo, At 16.16-18"],
+["Evangelista","Evangeliza pessoalmente, no trabalho e em frentes missionárias, expondo o evangelho de modo que não crentes sejam levados à salvação.","Filipe, At 8.5-40"],
+["Aconselhamento (Exortação)","Preocupa-se com o crescimento espiritual das pessoas, aconselha quem precisa resolver problemas e decisões, conforta e encoraja quem está em pecado, inspira à ação e desperta interesse espiritual.","Judas e Silas, At 15.32"],
+["Fé","Vê o que precisa ser feito e crê que Deus fará, mesmo quando parece impossível. Motiva as pessoas e a igreja em decisões e grandes desafios.","Hc 3.17-19; Hb 11.24-27"],
+["Ensino","Obtém informações para esclarecer a verdade, explica os detalhes de um assunto e se esforça para que outros aprendam a Palavra de Deus, por exemplo como professor da EBD ou em escolas de treinamento.","Áquila e Priscila, At 18.26"],
+["Pastor e Mestre","Orienta o povo de Deus no caminho diário, aconselha quem está confuso, alimenta com o ensino da Palavra e socorre nas necessidades espirituais. O núcleo do trabalho pastoral é alimentar e proteger.","Simeão, At 13.1"],
+["Profeta","Prega, admoesta o povo quanto ao caminho de Deus e ajuda a descobrir a direção de Deus em decisões importantes. O profeta convence em termos gerais; o mestre explica em detalhes.","Pedro, At 2.14"],
+["Repartir (Contribuir)","Procura recursos financeiros e materiais para repartir com necessitados e com a obra da igreja, capacitando outros a fazer o que você não poderia, e se realiza ao ver o objetivo alcançado.","Barnabé, At 4.36-37"],
+["Sabedoria","Percebe as verdadeiras causas de uma situação, tem uma palavra sensata para momentos difíceis, aplica o conhecimento ao caso específico e busca respostas práticas em decisões. Em geral auxilia outros dons.","Josué, Dt 34.9; 2 Tm 3.15"]];
+const KEY="dons-inventario-v1";
+let ans=Array(84).fill(null),idx=0,tm;
+const $=document.getElementById("app");
+const B=`<div class="brand"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M18.5 7.5A8 8 0 1 0 19 16"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/></svg><span><b>Central</b> de Timóteo</span></div>`;
+function save(){try{localStorage.setItem(KEY,JSON.stringify({ans,idx}))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||"null");if(d&&Array.isArray(d.ans)&&d.ans.length===84){ans=d.ans;idx=Math.min(83,d.idx|0);return true}}catch(e){}return false}
+const done=()=>ans.every(a=>a!==null);
+const answered=()=>ans.filter(a=>a!==null).length;
+function scores(){const s=Array(14).fill(0);ans.forEach((a,i)=>{s[i%14]+=a||0});return s}
+function intro(){
+ const has=load()&&answered()>0;
+ $.innerHTML=`<div class="intro">${B}<h1>Inventário de <em>dons espirituais</em></h1>
+ <p class="muted">84 afirmações · cerca de 15 minutos</p>
+ <div class="card" style="margin:20px 0">
+ <ul><li>Responda pelo que você realmente vive e sente, não pelo que pareceria melhor ou daria mais “status”.</li>
+ <li>O resultado se baseia tanto na sua experiência quanto no seu interesse.</li>
+ <li>Em cada afirmação, pense: <b>esta frase tem sido a experiência da minha vida de que forma?</b></li></ul>
+ <ul class="scale"><li><b>Muito</b> (4)</li><li><b>Raramente</b> (1)</li><li><b>Às vezes</b> (2)</li><li><b>Nunca</b> (0)</li></ul></div>
+ ${has&&!done()?`<button class="btn" id="go">Continuar de onde parei (${answered()} de 84)</button><button class="btn ghost" id="new">Começar de novo</button>`:has&&done()?`<button class="btn" id="go">Ver meu resultado</button><button class="btn ghost" id="new">Refazer o inventário</button>`:`<button class="btn" id="go">Começar</button>`}
+ <p class="note">Inventário organizado por Lourenço Stélio Rega, usado pela Igreja Batista Central de Timóteo. Seus resultados ficam só neste aparelho.</p></div>`;
+ document.getElementById("go").onclick=()=>done()?result():ask();
+ const n=document.getElementById("new");if(n)n.onclick=()=>{ans=Array(84).fill(null);idx=0;save();ask()};
+}
+function ask(){
+ const pct=Math.round(answered()/84*100);
+ $.innerHTML=`<div class="qtop"><span>Afirmação ${idx+1} de 84</span><span>${pct}%</span></div>
+ <div class="bar"><i style="width:${pct}%"></i></div>
+ <p class="qtext">${Q[idx]}</p><p class="q-ask">Esta afirmação tem sido a experiência da minha vida de que forma?</p>
+ ${O.map(o=>`<button class="opt${ans[idx]===o[1]?" sel":""}" data-v="${o[1]}">${o[0]} <b>${o[1]}</b></button>`).join("")}
+ <button class="back" id="bk">${idx?"← Voltar":"← Início"}</button>`;
+ $.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+  ans[idx]=+b.dataset.v;save();$.querySelectorAll(".opt").forEach(x=>x.classList.toggle("sel",x===b));
+  clearTimeout(tm);tm=setTimeout(()=>{if(idx<83){idx++;save();ask()}else if(done())result();else{idx=ans.findIndex(a=>a===null);ask()}},220)});
+ document.getElementById("bk").onclick=()=>{clearTimeout(tm);if(idx){idx--;save();ask()}else intro()};
+ window.scrollTo(0,0);
+}
+function result(){
+ const s=scores(),rank=s.map((v,i)=>i).sort((a,b)=>s[b]-s[a]||a-b);
+ const hi=rank.filter(i=>s[i]>=19),top=hi.length?hi.filter(i=>s[i]===s[hi[0]]):[];
+ const sec=hi.filter(i=>!top.includes(i));
+ let h=B+`<h1>Seu <em>resultado</em></h1><p class="muted">Dons com 19 pontos ou mais (de no máximo 24) são os que o inventário destaca.</p>`;
+ if(top.length){
+  h+=`<p class="sec">${top.length>1?"Dons principais (empate)":"Dom principal"}</p>`;
+  top.forEach(i=>{h+=`<div class="hero"><h2><mark>${G[i][0]}</mark></h2><div class="pts">${s[i]} pontos · ${G[i][2]}</div><p style="margin-top:8px">${G[i][1]}</p></div>`});
+  if(sec.length){h+=`<p class="sec">${sec.length>1?"Dons secundários ou auxiliares":"Dom secundário ou auxiliar"}</p>`;
+   sec.forEach(i=>{h+=`<div class="hero" style="border-color:var(--muted)"><h3>${G[i][0]} <span class="pts">· ${s[i]} pontos</span></h3><p style="margin-top:6px">${G[i][1]}</p></div>`})}
+ }else{
+  h+=`<div class="card" style="margin:16px 0"><p><b>Nenhum dom chegou a 19 pontos.</b> Isso é comum: pode indicar que seus dons ainda estão em desenvolvimento ou que você respondeu com cautela. Veja abaixo onde estão suas maiores pontuações e pratique essas áreas para observar seu desenvolvimento.</p></div>`;
+ }
+ h+=`<p class="sec">Todos os dons, do maior para o menor. A linha vertical marca 19 pontos. Toque para ler a descrição.</p>`;
+ rank.forEach(i=>{h+=`<details class="gift${s[i]>=19?" hi":""}"><summary><div class="row"><span>${G[i][0]}</span><span>${s[i]}</span></div><div class="track"><i style="width:${s[i]/24*100}%"></i><u></u></div></summary><div class="more">${G[i][1]}<br><i>${G[i][2]}</i></div></details>`});
+ h+=`<div class="card" style="margin:24px 0"><h3 style="margin-bottom:8px">Depois de descobrir seus dons</h3>
+ <p><b>Pratique</b> os dons descobertos e acompanhe seu desenvolvimento.</p>
+ <p><b>Avalie</b> a reação da igreja ao aproveitamento dos seus dons a serviço da comunidade.</p>
+ <p style="margin:0"><b>Priorize</b> seus objetivos: se Deus o capacitou com certos dons, envolva-se de forma prioritária em atividades ligadas a eles.</p></div>
+ <button class="btn" id="sh">Compartilhar resultado</button><button class="btn ghost" id="rd">Refazer o inventário</button><button class="back" id="rv">← Revisar respostas</button>
+ <p class="note" id="msg" aria-live="polite">O inventário indica tendências para conversar com seu líder ou pastor; ele não substitui discernimento pessoal e comunitário.</p>`;
+ $.innerHTML=h;window.scrollTo(0,0);
+ const txt="Meu Inventário de Dons Espirituais\n"+(top.length?"Principal: "+top.map(i=>G[i][0]+" ("+s[i]+")").join(", ")+(sec.length?"\nSecundários: "+sec.map(i=>G[i][0]+" ("+s[i]+")").join(", "):""):"Nenhum dom chegou a 19 pontos. Maiores: "+rank.slice(0,3).map(i=>G[i][0]+" ("+s[i]+")").join(", "));
+ const msg=document.getElementById("msg");
+ document.getElementById("sh").onclick=async()=>{
+  try{if(navigator.share){await navigator.share({title:"Meus dons espirituais",text:txt});return}}catch(e){if(e&&e.name==="AbortError")return}
+  try{await navigator.clipboard.writeText(txt);msg.textContent="Resultado copiado. É só colar onde quiser compartilhar."}
+  catch(e){const a=document.createElement("textarea");a.value=txt;document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand("copy")}catch(_){}a.remove();msg.textContent=ok?"Resultado copiado. É só colar onde quiser compartilhar.":txt}};
+ document.getElementById("rd").onclick=()=>{ans=Array(84).fill(null);idx=0;save();ask()};
+ document.getElementById("rv").onclick=()=>{idx=0;ask()};
+}
+intro();
+</script></body></html>
